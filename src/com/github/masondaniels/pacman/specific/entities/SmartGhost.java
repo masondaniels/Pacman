@@ -81,8 +81,6 @@ public abstract class SmartGhost extends Entity {
 			g.setColor(debugColor);
 			g.drawString("Dist: " + distance, (int) x + 8, (int) y + 8);
 			g.drawLine((int) x, (int) y, (int) goalX, (int) goalY);
-//			g.drawLine((int) x, (int) y, (int) goalX, (int) y);
-//			g.drawLine((int) x, (int) y, (int) x, (int) (int) goalY);
 			g.drawRect((int) goalX, (int) goalY, 1, 1);
 		}
 	}

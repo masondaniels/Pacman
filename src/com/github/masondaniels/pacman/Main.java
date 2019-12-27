@@ -12,11 +12,15 @@ import com.github.masondaniels.pacman.ui.App;
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
-
-		int width = 224;
-		int height = 288;
-		App app = new App(width, height, width, height);
+		int width = args.length > 1 ? (args[0] != null ? Integer.parseInt(args[0]) : 28 * 8) : 28 * 8;
+		int height = args.length > 1 ? (args[1] != null ? Integer.parseInt(args[1]) : 36 * 8) : 36 * 8;
+		App app = new App(width, height, 28 * 8, 36 * 8);
 		app.setTitle("Pacman");
+
+		/*
+		 * Types is an array which holds all tile data. https://i.imgur.com/ktViAy3.png
+		 * for mappings.
+		 */
 
 		int[] types = { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
 				8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
@@ -48,6 +52,10 @@ public class Main {
 				2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
 				8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8 };
 
+		/*
+		 * Pells is similar to types except pells holds all pellet data.
+		 */
+
 		int[] pells = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -78,16 +86,20 @@ public class Main {
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+		/*
+		 * This boolean enables or disables visual debug.
+		 */
+
 		boolean debug = false;
 		Tile[] tiles = new Tile[28 * 36];
 		int i = 0;
-		for (int x = 0; x < 36; x++) {
-			for (int y = 0; y < 28; y++) {
+		for (int y = 0; y < 36; y++) {
+			for (int x = 0; x < 28; x++) {
 				try {
-					tiles[i] = new Tile(y * 8, x * 8, types[i]);
+					tiles[i] = new Tile(x * 8, y * 8, types[i]);
 					tiles[i].setPellet(pells[i] == 1 ? true : false);
 				} catch (Exception e) {
-					tiles[i] = new Tile(y * 8, x * 8, 8);
+					tiles[i] = new Tile(x * 8, y * 8, 8);
 				}
 				i++;
 			}
@@ -103,7 +115,6 @@ public class Main {
 		world.add(clyde);
 		world.add(inky);
 		world.add(blinky);
-
 		world.add(pacman);
 		app.addAppObj(world);
 

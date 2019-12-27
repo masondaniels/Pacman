@@ -47,13 +47,21 @@ public class Pacman extends Entity {
 	protected void doSpecialMovement() {
 
 	}
+	
+	/*
+	 * Some notes for myself
+	 * ----------------------------------
+	 * Code		Key		Name	Direction
+	 * ----------------------------------
+	 * 87		up		W		0
+	 * 65		left	A		1
+	 * 83		down	S		2
+	 * 68		right	D		3
+	 * 
+	 */
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// 87 up (w) 0
-		// 65 left (a) 1
-		// 83 down (s) 2
-		// 68 right (d) 3
 		int d0 = (((int) (x) / 8) + 28 * ((int) (y) / 8)) - 28;
 		int d1 = (((int) (x) / 8) + 28 * ((int) (y) / 8)) - 1;
 		int d2 = (((int) (x) / 8) + 28 * ((int) (y) / 8)) + 28;
