@@ -9,9 +9,12 @@ Below are some GIFs of previous builds. Currently ghosts are not released from a
 ![Visual](https://i.imgur.com/ixuEIO8.gif)
 
 This is a build of the pacman remake.
-
 ###### Visual Debug
 
 ![Visual Debug](https://i.imgur.com/Ymq2psv.gif)
 
 The lines point to ghost's goals & rectangles are bounds of tiles. When bounds change colors this represents bounds checked by collision detection.
+
+## Notes
+
+All code is mine except for [this eight-lined piece of code](https://github.com/masondaniels/Pacman/blob/master/src/com/github/masondaniels/pacman/ui/BufferedImageUtil.java) that resizes an image.
